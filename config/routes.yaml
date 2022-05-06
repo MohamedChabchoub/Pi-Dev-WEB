@@ -1,0 +1,27 @@
+Article_add_avec_id_X :
+    path: /admin/add-article/
+    controller: App\Controller\ArticleController::save
+consulter_article :
+    path: /article/detail/{id}/
+    controller : App\Controller\ArticleController::detail 
+Tableau_Article:
+    path: /admin/article/
+    controller: App\Controller\ArticleController::index
+Article_new :
+    path: /admin/new-article/
+    controller: App\Controller\ArticleController::new
+modifier_article :
+    path : /article/edit/{id}/
+    controller : App\Controller\ArticleController::edit
+supprimer_article : 
+    path : /article/delete/{id}/
+    controller : App\Controller\ArticleController::delete
+favorite_article :
+    path: /admin/favorite
+    controller: App\Controller\ArticleController::favoriteArticle
+list_favorite:
+    path: /admin/list_favorite/
+    controller: App\Controller\ArticleController::favoriteArticle
+Noter application:
+    path: /admin/article/note/
+    controller: App\Controller\ArticleController::note

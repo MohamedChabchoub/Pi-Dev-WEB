@@ -1,0 +1,87 @@
+{% extends 'inc/base.html.twig' %}
+
+
+
+{% block body %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tableau des articles</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Articles </h2>
+  <p>Tableau des articles</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Id Article</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>etat</th>
+        <th>image</th>
+        <th>categorie</th>
+        <th>Gouvernorat</th>
+        <th>User</th>
+
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for article in article %}
+        <tr>
+            <td>{{article.id|e}}</td>
+            <td>{{article.titre|e}}</td>
+            <td>{{article.description|e}}</td>
+            <td>{{article.etat|e}}</td>
+            <td>{{article.image|e}}</td>
+            <td>{{article.idCategorie|e}}</td>
+            <td>{{article.idGouvernorat|e}}</td>
+            <td>{{article.idProprietaire|e}}</td>
+
+            <td>
+                <a href="/article/detail/{{article.id|e}}/" class="btn btn-dark">Détails</a>
+                <a href="/article/edit/{{article.id|e}}/" class="btn btn-dark">Modifier</a>
+                <a href="/article/delete/{{article.id|e}}/" class="btn btn-danger" 
+                onclick="return confirm('Etes-vous sûr de supprimer cet article?');">Supprimer</a>
+
+
+              </td>
+
+
+                  
+          </tr>
+    {% endfor %}
+     
+      
+    </tbody>
+  </table>
+  
+ 
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+</body>
+</html>
+{% endblock %}
